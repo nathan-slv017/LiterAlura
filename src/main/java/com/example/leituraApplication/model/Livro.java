@@ -1,9 +1,6 @@
 package com.example.leituraApplication.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Livro {
@@ -13,9 +10,46 @@ public class Livro {
     private Long id;
     private String titulo;
     private String autor;
+    private Integer downloads;
+    private String idioma;
+    private Integer anoDeNascimentoDoAltor;
+    private Integer anoDeFalecimentoDoAltor;
+
+    public Integer getAnoDeNascimentoDoAltor() {
+        return anoDeNascimentoDoAltor;
+    }
+
+    public void setAnoDeNascimentoDoAltor(Integer anoDeNascimentoDoAltor) {
+        this.anoDeNascimentoDoAltor = anoDeNascimentoDoAltor;
+    }
+
+    public Integer getAnoDeFalecimentoDoAltor() {
+        return anoDeFalecimentoDoAltor;
+    }
+
+    public void setAnoDeFalecimentoDoAltor(Integer anoDeFalecimentoDoAltor) {
+        this.anoDeFalecimentoDoAltor = anoDeFalecimentoDoAltor;
+    }
+
+    public Integer getDownloads() {
+        return downloads;
+    }
+
+    public void setDownloads(Integer downloads) {
+        this.downloads = downloads;
+    }
+
+    public String getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
+    }
 
     // Construtor padrão
-    public Livro() {}
+    public Livro() {
+    }
 
     // Construtor parametrizado
     public Livro(String titulo, String autor) {
@@ -48,4 +82,13 @@ public class Livro {
         this.autor = autor;
     }
 
+    @Override
+    public String toString() {
+        return "----- LIVRO -----" + '\n' +
+                "   Titulo: " + titulo + '\n' +
+                "   Autor: " + autor + '\n' +
+                "   Idioma: " + idioma + '\n' +
+                "   Número de downloads: " + downloads + '\n' +
+                "-----------------";
+    }
 }

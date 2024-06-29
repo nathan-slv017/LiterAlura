@@ -24,16 +24,28 @@ public class LivroService {
         if (response != null) {
             JsonArray results = response.getAsJsonArray("results");
             if (results.size() > 0) {
+
                 JsonObject livroJson = results.get(0).getAsJsonObject();
+                JsonObject livroJsonSobreAutor = livroJson.getAsJsonArray("authors").get(0).getAsJsonObject();
+
                 String livroTitulo = livroJson.get("title").getAsString();
-                String autor = livroJson.getAsJsonArray("authors").get(0).getAsJsonObject().get("name").getAsString();
+                Integer downloads = livroJson.get("download_count").getAsInt();
+                String idioma = livroJson.get("languages").getAsString();
+
+                String autor = livroJsonSobreAutor.get("name").getAsString();
+                Integer anoDeNascimentoDoAutor = livroJsonSobreAutor.get("birth_year").getAsInt();
+                Integer anoDeFalecimentoDoAutor = livroJsonSobreAutor.get("death_year").getAsInt();
 
                 Livro livro = new Livro();
                 livro.setTitulo(livroTitulo);
                 livro.setAutor(autor);
+                livro.setDownloads(downloads);
+                livro.setIdioma(idioma);
+                livro.setAnoDeNascimentoDoAltor(anoDeNascimentoDoAutor);
+                livro.setAnoDeFalecimentoDoAltor(anoDeFalecimentoDoAutor);
 
                 livroRepository.save(livro);
-                System.out.println("Livro salvo no banco de dados: " + livroTitulo + " por " + autor);
+                System.out.println(livro.toString());
             } else {
                 System.out.println("Nenhum livro encontrado com o título: " + titulo);
             }
@@ -42,6 +54,16 @@ public class LivroService {
 
     public void listarLivrosRegistrados() {
         Iterable<Livro> livros = livroRepository.findAll();
-        livros.forEach(livro -> System.out.println("Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor()));
+        livros.forEach(livro -> System.out.println(livro));
+    }
+
+    public void listaDeAutoresRegistrados() {
+
+    }
+
+    public void autoreVivoEmUmDeterminadoAno() {
+    }
+
+    public void livrosEmUmDeterminadoIdioma() {
     }
 }

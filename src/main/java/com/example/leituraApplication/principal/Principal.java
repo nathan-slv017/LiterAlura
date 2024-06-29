@@ -23,6 +23,7 @@ public class Principal {
         while (opcao != 0) {
 
             String menu = """
+                    ----------------------
                     Escolha o número da sua opção:
                     1- Buscar livro pelo título
                     2- Listar livros registrados
@@ -43,6 +44,14 @@ public class Principal {
                 case 2:
                     livroService.listarLivrosRegistrados();
                     break;
+                case 3:
+                    livroService.listaDeAutoresRegistrados();
+                    break;
+                case 4:
+                    livroService.autoreVivoEmUmDeterminadoAno();
+                    break;
+                case 5:
+                    livroService.livrosEmUmDeterminadoIdioma();
                 case 0:
                     System.out.println("Saindo...");
                     break;
