@@ -40,6 +40,7 @@ public class Principal {
                     System.out.println("Digite o titulo do livro: ");
                     String livroBuscado = scanner.nextLine();
                     livroService.buscarLivroPorTitulo(livroBuscado);
+
                     break;
                 case 2:
                     livroService.listarLivrosRegistrados();

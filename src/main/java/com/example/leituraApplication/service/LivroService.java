@@ -7,11 +7,14 @@ import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LivroService {
 
     private final LivroRepository livroRepository;
     private final ConsumoApi consumoApi;
+
 
     @Autowired
     public LivroService(LivroRepository livroRepository, ConsumoApi consumoApi) {
@@ -46,6 +49,8 @@ public class LivroService {
 
                 livroRepository.save(livro);
                 System.out.println(livro.toString());
+
+
             } else {
                 System.out.println("Nenhum livro encontrado com o título: " + titulo);
             }
@@ -58,7 +63,8 @@ public class LivroService {
     }
 
     public void listaDeAutoresRegistrados() {
-
+        List<String> autores = livroRepository.findDistinctAutores();
+        autores.forEach(System.out::println);
     }
 
     public void autoreVivoEmUmDeterminadoAno() {
