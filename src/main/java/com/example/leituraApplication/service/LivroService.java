@@ -15,7 +15,6 @@ public class LivroService {
     private final LivroRepository livroRepository;
     private final ConsumoApi consumoApi;
 
-
     @Autowired
     public LivroService(LivroRepository livroRepository, ConsumoApi consumoApi) {
         this.livroRepository = livroRepository;
@@ -33,7 +32,7 @@ public class LivroService {
 
                 String livroTitulo = livroJson.get("title").getAsString();
                 Integer downloads = livroJson.get("download_count").getAsInt();
-                String idioma = livroJson.get("languages").getAsString();
+                String idioma = livroJson.getAsJsonArray("languages").get(0).getAsString();
 
                 String autor = livroJsonSobreAutor.get("name").getAsString();
                 Integer anoDeNascimentoDoAutor = livroJsonSobreAutor.get("birth_year").getAsInt();
@@ -44,12 +43,11 @@ public class LivroService {
                 livro.setAutor(autor);
                 livro.setDownloads(downloads);
                 livro.setIdioma(idioma);
-                livro.setAnoDeNascimentoDoAltor(anoDeNascimentoDoAutor);
-                livro.setAnoDeFalecimentoDoAltor(anoDeFalecimentoDoAutor);
+                livro.setAnoDeNascimentoDoAutor(anoDeNascimentoDoAutor);
+                livro.setAnoDeFalecimentoDoAutor(anoDeFalecimentoDoAutor);
 
                 livroRepository.save(livro);
                 System.out.println(livro.toString());
-
 
             } else {
                 System.out.println("Nenhum livro encontrado com o título: " + titulo);
@@ -67,9 +65,17 @@ public class LivroService {
         autores.forEach(System.out::println);
     }
 
-    public void autoreVivoEmUmDeterminadoAno() {
+    public void autoreVivoEmUmDeterminadoAno(Integer ano) {
+        List<String> autoresVivos = livroRepository.findAutoresVivosEmAno(ano);
+        if (autoresVivos.isEmpty()) {
+            System.out.println("Nenhum autor estava vivo no ano: " + ano);
+        } else {
+            autoresVivos.forEach(System.out::println);
+        }
     }
 
-    public void livrosEmUmDeterminadoIdioma() {
+    public void livrosEmUmDeterminadoIdioma(String idioma) {
+        List<String> listaDeLivros = livroRepository.findTitulosPorIdioma(idioma);
+        listaDeLivros.forEach(System.out::println);
     }
 }

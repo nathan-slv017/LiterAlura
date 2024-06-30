@@ -12,23 +12,23 @@ public class Livro {
     private String autor;
     private Integer downloads;
     private String idioma;
-    private Integer anoDeNascimentoDoAltor;
-    private Integer anoDeFalecimentoDoAltor;
+    private Integer anoDeNascimentoDoAutor;
+    private Integer anoDeFalecimentoDoAutor;
 
-    public Integer getAnoDeNascimentoDoAltor() {
-        return anoDeNascimentoDoAltor;
+    public Integer getAnoDeNascimentoDoAutor() {
+        return anoDeNascimentoDoAutor;
     }
 
-    public void setAnoDeNascimentoDoAltor(Integer anoDeNascimentoDoAltor) {
-        this.anoDeNascimentoDoAltor = anoDeNascimentoDoAltor;
+    public void setAnoDeNascimentoDoAutor(Integer anoDeNascimentoDoAutor) {
+        this.anoDeNascimentoDoAutor = anoDeNascimentoDoAutor;
     }
 
-    public Integer getAnoDeFalecimentoDoAltor() {
-        return anoDeFalecimentoDoAltor;
+    public Integer getAnoDeFalecimentoDoAutor() {
+        return anoDeFalecimentoDoAutor;
     }
 
-    public void setAnoDeFalecimentoDoAltor(Integer anoDeFalecimentoDoAltor) {
-        this.anoDeFalecimentoDoAltor = anoDeFalecimentoDoAltor;
+    public void setAnoDeFalecimentoDoAutor(Integer anoDeFalecimentoDoAutor) {
+        this.anoDeFalecimentoDoAutor = anoDeFalecimentoDoAutor;
     }
 
     public Integer getDownloads() {

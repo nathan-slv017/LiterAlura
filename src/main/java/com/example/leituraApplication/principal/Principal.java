@@ -49,10 +49,21 @@ public class Principal {
                     livroService.listaDeAutoresRegistrados();
                     break;
                 case 4:
-                    livroService.autoreVivoEmUmDeterminadoAno();
+                    System.out.println("Informe um ano especifico");
+                    Integer ano = scanner.nextInt();
+                    livroService.autoreVivoEmUmDeterminadoAno(ano);
                     break;
                 case 5:
-                    livroService.livrosEmUmDeterminadoIdioma();
+                    System.out.println("""
+                Insira o idioma para realizar a busca:
+                es- espanhol
+                en- inglês
+                fr- francês
+                pt- português
+                """);
+                    String idioma = scanner.nextLine();
+                    livroService.livrosEmUmDeterminadoIdioma(idioma);
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
